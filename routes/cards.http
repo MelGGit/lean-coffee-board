@@ -7,7 +7,7 @@
 GET {{baseUrl}}/api/cards
 
 ### GET /api/cards/:id
-GET {{baseUrl}}/api/cards/0
+GET {{baseUrl}}/api/cards/60b392e7ffce29a4a3391c96
 
 ### GET /api/cards/2000 (should not be found)
 GET {{baseUrl}}/api/cards/2000
@@ -22,8 +22,26 @@ Content-Type: application/json
   "votes": 10
 }
 
+### POST /api/cards (votes initialized to 0)
+POST http://localhost:4000/api/cards
+Content-Type: application/json
+
+{
+  "title": "Coffe is Life",
+  "author": "Max Mustermann"
+}
+
+### POST /api/cards (title is required)
+POST http://localhost:4000/api/cards
+Content-Type: application/json
+
+{
+  "author": "Max Mustermann",
+  "votes": 10
+}
+
 ### PATCH /api/cards/1
-PATCH {{baseUrl}}/api/cards/1
+PATCH {{baseUrl}}/api/cards/60b392e7ffce29a4a3391c96
 Content-Type: application/json
 
 {
@@ -32,7 +50,7 @@ Content-Type: application/json
 }
 
 ### DELETE /api/cards/1
-DELETE {{baseUrl}}/api/cards/1
+DELETE {{baseUrl}}/api/cards/60b392e7ffce29a4a3391c96
 
     © 2021 GitHub, Inc.
     Terms
