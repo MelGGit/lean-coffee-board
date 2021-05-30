@@ -1,56 +1,30 @@
 const express = require('express')
-const uuidv4 = require('uuid').v4
 const router = express.Router()
-
-let users = [
-  {
-    name: 'Jane Doe',
-    age: 33,
-    email: 'jane@doe.com',
-    id: '0',
-  },
-  {
-    name: 'John Doe',
-    age: 32,
-    email: 'john@doe.com',
-    id: '1',
-  },
-]
+const User = require('../models/User')
 
 // get all users
-router.get('/', (req, res, next) => {
-  res.json(users)
+router.get('/', async (req, res, next) => {
+  res.json(await User.find())
 })
 
 // get user with id
-router.get('/:id', (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   const { id } = req.params
-  const foundUser = users.find(user => user.id === id)
-  foundUser ? res.json(foundUser) : next()
+  res.json(await User.findById(id))
 })
 
-router.post('/', (req, res, next) => {
-  const newUser = { ...req.body, id: uuidv4() }
-  users.push(newUser)
-  res.status(201).json(newUser)
+router.post('/', async (req, res, next) => {
+  res.status(201).json(await User.create(req.body))
 })
 
-router.patch('/:id', (req, res, next) => {
+router.patch('/:id', async (req, res, next) => {
   const { id } = req.params
-
-  const index = users.findIndex(user => user.id === id)
-  const user = users[index]
-  const updatedUser = { ...user, ...req.body }
-  users.splice(index, 1, updatedUser)
-  res.json(updatedUser)
+  res.json(await User.findByIdAndUpdate(id, req.body))
 })
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   const { id } = req.params
-
-  // delete by retourning a new array with all users except the one to be deletetd
-  users = users.filter(user => user.id !== id)
-  res.sendStatus(204)
+  res.sendStatus(204).json(await User.findByIdAndDelete(id))
 })
 
 module.exports = router
