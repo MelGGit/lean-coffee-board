@@ -6,4 +6,4 @@ const cardSchema = {
   votes: { type: Number, default: 0 },
 }
 
-module.exports = mongoose.model('Cards', cardSchema)
+module.exports = mongoose.model('Card', cardSchema)

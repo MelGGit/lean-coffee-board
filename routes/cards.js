@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Card = require('../models/Cards')
+const Card = require('../models/Card')
 
 // get all cards
 router.get('/', async (req, res, next) => {
