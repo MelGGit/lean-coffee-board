@@ -13,7 +13,7 @@
     "build:read-users": "npm run shebang:read-users && npm run chmod:read-users",
     "shebang:read-users": "echo '#!/usr/bin/env node' > bin/read-users && cat read-users.js >> bin/read-users",
     "chmod:read-users": "chmod +x bin/read-users",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cd client && npm test"
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +24,8 @@
     "mongoose-type-email": "^1.1.2",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.7",
+    "prop-types": "^15.7.2",
+    "styled-components": "^5.3.0",
     "uuid": "^8.3.2"
   }
 }
